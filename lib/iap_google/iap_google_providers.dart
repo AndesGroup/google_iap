@@ -112,8 +112,8 @@ class IAPGoogleNotifier extends IapNotifier {
     updateIapItems(iapItems);
 
     state = state.copyWith(
-        mustShowNoteSubscription:
-            response.productDetails.any((element) => state.subscriptionIds.contains(element.id)));
+        mustShowNoteSubscription: (iapItems.valueOrNull ?? [])
+            .any((element) => state.subscriptionIds.contains(element.id)));
   }
 
   void _listenToPurchaseUpdated(List<PurchaseDetails> purchaseDetailsList) async {
@@ -149,10 +149,14 @@ class IAPGoogleNotifier extends IapNotifier {
     final item = items.first;
 
     final PurchaseParam purchaseParam = PurchaseParam(productDetails: item);
-    if (state.consumableIds.contains(item.id)) {
-      await InAppPurchase.instance.buyConsumable(purchaseParam: purchaseParam);
-    } else {
-      await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+    try {
+      if (state.consumableIds.contains(item.id)) {
+        await InAppPurchase.instance.buyConsumable(purchaseParam: purchaseParam);
+      } else {
+        await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+      }
+    } catch (e) {
+      updateMessage(IapMessage.from(e));
     }
   }
 
