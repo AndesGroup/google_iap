@@ -12,9 +12,11 @@ import 'iap_google_state.dart';
 class BuyScreen extends ConsumerStatefulWidget {
   const BuyScreen({
     this.title = 'Buy options',
+    this.showAppbar = true,
     Key? key,
   }) : super(key: key);
   final String title;
+  final bool showAppbar;
 
   @override
   ConsumerState createState() => _BuyScreenState();
@@ -51,9 +53,11 @@ class _BuyScreenState extends ConsumerState<BuyScreen> {
       }
     });
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: widget.showAppbar
+          ? AppBar(
+              title: Text(widget.title),
+            )
+          : null,
       body: SafeArea(
         child: Column(
           children: [

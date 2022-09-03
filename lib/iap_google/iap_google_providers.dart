@@ -169,8 +169,8 @@ class IAPGoogleNotifier extends IapNotifier {
   }
 
   @override
-  Widget buyScreen({String title = 'Buy options'}) {
-    return BuyScreen(title: title);
+  Widget buyScreen({String title = 'Buy options', bool showAppbar = true}) {
+    return BuyScreen(title: title, showAppbar: showAppbar);
   }
 
   @override
