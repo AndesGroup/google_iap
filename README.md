@@ -37,3 +37,10 @@ const like = 'sample';
 TODO: Tell users more about the package: where to find more information, how to 
 contribute to the package, how to file issues, what response they can expect 
 from the package authors, and more.
+
+hồng trà chân châu trắng
+trà sữa bạc hà 
+2 sinh tố bơ
+2 xúc xích
+
+số nhà 62, đường ngô sĩ liên, phường châu sơn, sông công.

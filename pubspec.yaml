@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  andesgroup_common: ^1.0.15
+  andesgroup_common: ^1.0.18
   in_app_purchase: ^3.0.7
   iap_interface:
     git:

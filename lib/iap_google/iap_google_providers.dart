@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_iap/iap_google/iap_google_screen.dart';
@@ -45,6 +46,7 @@ class IAPGoogleNotifier extends IapNotifier {
       'consum4',
       'consum5',
       'consum6',
+      if (kDebugMode) 'android.test.purchased',
     ],
     List<String> subscriptionIds = const [
       'sub1',
@@ -52,6 +54,7 @@ class IAPGoogleNotifier extends IapNotifier {
       'sub3',
       'sub4',
       'sub5',
+      if (kDebugMode) 'android.test.purchased',
     ],
     this.useFakeData = false,
   }) : super(ref, consumableIds: consumableIds, subscriptionIds: subscriptionIds);
@@ -176,6 +179,11 @@ class IAPGoogleNotifier extends IapNotifier {
   @override
   Future<bool> checkPurchase({String storeId = ''}) async {
     return state.havePremium;
+  }
+
+  @override
+  Future<void> restorePurchase() async {
+    await _instance.restorePurchases();
   }
 }
 
