@@ -130,7 +130,7 @@ class IAPGoogleNotifier extends IapNotifier {
               IapGooglePurchaseResult.from(purchaseDetails.status, purchaseDetails.error!));
         } else if (purchaseDetails.status == PurchaseStatus.purchased ||
             purchaseDetails.status == PurchaseStatus.restored) {
-          ref.read(iapProvider.notifier).buyDiamondsIfNeed(purchaseDetails.productID);
+          buyDiamondsIfNeed(purchaseDetails.productID);
           state = state.copyWith(
               havePremium: state.subscriptionIds.contains(purchaseDetails.productID));
           updatePurchaseResult(IapGooglePurchaseResult.from(purchaseDetails.status));
